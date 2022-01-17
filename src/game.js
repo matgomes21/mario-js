@@ -31,10 +31,26 @@ loadSprite('pipe-bottom-right', 'nqQ79eI.png')
 screen("game", ()=> {
   layers(['bg','obj','ui'], 'obj')
 
+  const map = [
+    '                                        ',
+    '                                        ',
+    '                                        ',
+    '                                        ',
+    '                                        ',
+    '                                        ',
+    '                                        ',
+    '                                        ',
+    '                                        ',
+    '===============================   ======',
+  ]
+
   const levelConfig = {
     width: 20,
     height: 20
+    '=': [sprite('block', solid())]
   }
+
+  const gameLevel = addLevel(map, levelConfig)
 })
 
 start("game")
