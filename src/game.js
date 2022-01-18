@@ -67,6 +67,17 @@ scene("game", ()=> {
 
   const gameLevel = addLevel(map, levelConfig)
 
+  const scoreLabel = add([
+    text('score'),
+    pos(30,6),
+    layer('ui'),
+    {
+      value: 'score',
+    }
+  ])
+
+  add([text('level ' + 'test', pos(4,6))])
+
   const player = add([
     sprite('mario'), solid(),
     pos(30,0),
