@@ -9,6 +9,8 @@ kaboom({
 // env variables
 const MOVE_SPEED = 120
 const JUMP_FORCE = 360
+const BIG_JUMP_FORCE = 500
+let CURRENT_JUMP_FORCE = JUMP_FORCE
 
 /*
   sprites
@@ -56,7 +58,7 @@ scene("game", ()=> {
     width: 20,
     height: 20,
     '=': [sprite('block'), solid()],
-    '$': [sprite('coin')],
+    '$': [sprite('coin'), solid(), 'coin'],
     '%': [sprite('surprise'), solid(), 'coin-surprise'],
     '*': [sprite('surprise'), solid(), 'mushroom-surprise'],
     '}': [sprite('unboxed'), solid()],
@@ -98,11 +100,13 @@ scene("game", ()=> {
       },
       smallify(){
         this.scale = vec2(1)
+        CURRENT_JUMP_FORCE = JUMP_FORCE
         timer = 0
         isBig = false
       },
       biggify(time){
         this.scale = vec2(2)
+        CURRENT_JUMP_FORCE = BIG_JUMP_FORCE
         timer = time
         isBig = true
       }
@@ -155,7 +159,7 @@ scene("game", ()=> {
 
   keyPress('space', () => {
     if(player.grounded()){
-      player.jump(JUMP_FORCE)
+      player.jump(CURRENT_JUMP_FORCE)
     }
   })
 
