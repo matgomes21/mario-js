@@ -6,6 +6,9 @@ kaboom({
   clearColor: [0,0,0,1],
 })
 
+// env variables
+const MOVE_SPEED = 120
+const JUMP_FORCE = 360
 
 /*
   sprites
@@ -84,6 +87,20 @@ scene("game", ()=> {
     body(),
     origin('bot')
   ])
+
+  keyDown('left', () => {
+    player.move(-MOVE_SPEED,0)
+  })
+
+  keyDown('right', () => {
+    player.move(MOVE_SPEED,0)
+  })
+
+  keyPress('space', () => {
+    if(player.grounded()){
+      player.jump(JUMP_FORCE)
+    }
+  })
 
 })
 
