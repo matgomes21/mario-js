@@ -123,6 +123,11 @@ scene("game", ()=> {
       destroy(obj)
       gameLevel.spawn('}', obj.gridPos.sub(0,0))
     }
+    if(obj.is('mushroom-surprise')){
+      gameLevel.spawn('#', obj.gridPos.sub(0,1))
+      destroy(obj)
+      gameLevel.spawn('}', obj.gridPos.sub(0,0))
+    }
   })
 
   keyDown('left', () => {
