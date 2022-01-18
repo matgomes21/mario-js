@@ -134,6 +134,17 @@ scene("game", ()=> {
     }
   })
 
+  player.collides('mushroom', (m) => {
+    destroy(m)
+    player.biggify(6)
+  })
+  
+  player.collides('coin', (c) => {
+    destroy(c)
+    scoreLabel.value++
+    scoreLabel.text = scoreLabel.value
+  })
+
   keyDown('left', () => {
     player.move(-MOVE_SPEED,0)
   })
