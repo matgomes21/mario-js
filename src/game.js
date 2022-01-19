@@ -13,6 +13,7 @@ const BIG_JUMP_FORCE = 500
 let CURRENT_JUMP_FORCE = JUMP_FORCE
 const ENEMY_SPEED = 20
 let isJumping = true
+const FALL_LIMIT = 400
 
 /*
   sprites
@@ -131,6 +132,19 @@ scene('game', ({ score })=> {
 
   action('enemy', (e) => {
     e.move(-ENEMY_SPEED,0)
+  })
+
+  player.action(() => {
+    if(player.grounded()){
+      isJumping=false
+    }
+  })
+
+  player.action(() => {
+    camPos(player.pos)
+    if(player.pos.y >= FALL_LIMIT){
+      go('lose', { score: scoreLabel.value })
+    }
   })
 
   // collisions
