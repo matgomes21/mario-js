@@ -12,6 +12,7 @@ const JUMP_FORCE = 360
 const BIG_JUMP_FORCE = 500
 let CURRENT_JUMP_FORCE = JUMP_FORCE
 const ENEMY_SPEED = 20
+let isJumping = true
 
 /*
   sprites
@@ -159,7 +160,11 @@ scene('game', ({ score })=> {
   })
 
   player.collides('enemy', (e) => {
-    go('lose', { score: scoreLabel.value})
+    if(isJumping){
+      destroy(e)
+    } else {
+      go('lose', { score: scoreLabel.value})
+    }
   })
 
   // keys
@@ -174,6 +179,7 @@ scene('game', ({ score })=> {
 
   keyPress('space', () => {
     if(player.grounded()){
+      isJumping = true
       player.jump(CURRENT_JUMP_FORCE)
     }
   })
