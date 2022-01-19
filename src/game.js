@@ -11,6 +11,7 @@ const MOVE_SPEED = 120
 const JUMP_FORCE = 360
 const BIG_JUMP_FORCE = 500
 let CURRENT_JUMP_FORCE = JUMP_FORCE
+const ENEMY_SPEED = 20
 
 /*
   sprites
@@ -66,7 +67,7 @@ scene("game", ()=> {
     ')': [sprite('pipe-bottom-right'), solid(), scale(0.5)],
     '-': [sprite('pipe-top-left'), solid(), scale(0.5)],
     '+': [sprite('pipe-top-right'), solid(), scale(0.5)],
-    '^': [sprite('goomba'), solid()],
+    '^': [sprite('goomba'), solid(), 'enemy'],
     '#': [sprite('mushroom'), solid(), 'mushroom', body()],
   }
 
@@ -121,9 +122,17 @@ scene("game", ()=> {
     origin('bot')
   ])
 
+  // actions
+
   action('mushroom', (m) => {
     m.move(50,0)
   })
+
+  action('enemy', (e) => {
+    e.move(-ENEMY_SPEED,0)
+  })
+
+  // collisions
 
   player.on('headbump', (obj) => {
     if(obj.is('coin-surprise')){
@@ -149,6 +158,12 @@ scene("game", ()=> {
     scoreLabel.text = scoreLabel.value
   })
 
+  player.collides('enemy', (e) => {
+    go('lose', { score: scoreLabel.value})
+  })
+
+  // keys
+
   keyDown('left', () => {
     player.move(-MOVE_SPEED,0)
   })
@@ -163,6 +178,10 @@ scene("game", ()=> {
     }
   })
 
+})
+
+scene('lose', ({ score }) => {
+  add([text(score, 32), origin('center'), pos(width()/2, height()/2)])
 })
 
 start("game")
