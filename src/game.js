@@ -59,7 +59,7 @@ scene("game", ()=> {
     width: 20,
     height: 20,
     '=': [sprite('block'), solid()],
-    '$': [sprite('coin'), solid(), 'coin'],
+    '$': [sprite('coin'), 'coin'],
     '%': [sprite('surprise'), solid(), 'coin-surprise'],
     '*': [sprite('surprise'), solid(), 'mushroom-surprise'],
     '}': [sprite('unboxed'), solid()],
