@@ -69,7 +69,7 @@ scene('game', ({ level, score })=> {
     ')': [sprite('pipe-bottom-right'), solid(), scale(0.5)],
     '-': [sprite('pipe-top-left'), solid(), scale(0.5), 'pipe'],
     '+': [sprite('pipe-top-right'), solid(), scale(0.5), 'pipe'],
-    '^': [sprite('goomba'), solid(), 'enemy'],
+    '^': [sprite('goomba'), 'enemy'],
     '#': [sprite('mushroom'), solid(), 'mushroom', body()],
   }
 
