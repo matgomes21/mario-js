@@ -44,7 +44,20 @@ loadSprite('pipe-bottom-right', 'nqQ79eI.png')
 scene('game', ({ level, score })=> {
   layers(['bg','obj','ui'], 'obj')
 
-  const map = [
+  const maps = [
+    [
+    '                                      ',
+    '                                      ',
+    '                                      ',
+    '                                      ',
+    '                                      ',
+    '    %  =*=%=                          ',
+    '                                      ',
+    '                            -+        ',
+    '                 ^    ^     ()        ',
+    '==============================   =====',
+  ],
+    [
     '                                      ',
     '                                      ',
     '                                      ',
@@ -56,6 +69,7 @@ scene('game', ({ level, score })=> {
     '                 ^    ^     ()        ',
     '==============================   =====',
   ]
+] = []
 
   const levelConfig = {
     width: 20,
@@ -73,7 +87,7 @@ scene('game', ({ level, score })=> {
     '#': [sprite('mushroom'), solid(), 'mushroom', body()],
   }
 
-  const gameLevel = addLevel(map, levelConfig)
+  const gameLevel = addLevel(maps[level], levelConfig)
 
   const scoreLabel = add([
     text(score),
