@@ -1,2 +1,7 @@
 # Mario.js
-A Super Mario game made with javascript and kaboom.js.
+A Super Mario game made with JavaScript.
+
+## Technologias
+
+- JavaScript
+- Kaboom.js
